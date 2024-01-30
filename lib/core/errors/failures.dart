@@ -7,29 +7,32 @@ library;
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
-  const Failure({
+  Failure({
     required this.message,
     required this.statusCode,
-  });
+  }) : assert(
+          statusCode is String || statusCode is int,
+          'StatusCode cannot be a ${statusCode.runtimeType}',
+        );
 
   final String message;
-  final int statusCode;
+  final dynamic statusCode;
 
   String get errorMessage => '$statusCode Error: $message';
 
   @override
-  List<Object> get props => [message, statusCode];
+  List<dynamic> get props => [message, statusCode];
 }
 
 class CacheFailure extends Failure {
-  const CacheFailure({
+  CacheFailure({
     required super.message,
     required super.statusCode,
   });
 }
 
 class ServerFailure extends Failure {
-  const ServerFailure({
+  ServerFailure({
     required super.message,
     required super.statusCode,
   });
