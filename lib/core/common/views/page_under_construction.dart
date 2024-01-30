@@ -1,4 +1,6 @@
+import 'package:dashboard_bloc_tdd/core/res/media_res.dart';
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 
 class PageUnderConstruction extends StatelessWidget {
   const PageUnderConstruction({super.key});
@@ -8,11 +10,13 @@ class PageUnderConstruction extends StatelessWidget {
     return Scaffold(
       body: Container(
         constraints: const BoxConstraints.expand(),
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
-            image: AssetImage('a'),
+            image: AssetImage(MediaRes.onBoardingBackground),
+            fit: BoxFit.cover,
           ),
         ),
+        child: SafeArea(child: Lottie.asset(MediaRes.pageUnderConstruction)),
       ),
     );
   }

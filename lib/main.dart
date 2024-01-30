@@ -1,7 +1,6 @@
 import 'package:dashboard_bloc_tdd/core/res/colors.dart';
 import 'package:dashboard_bloc_tdd/core/res/fonts.dart';
 import 'package:dashboard_bloc_tdd/core/services/router.dart';
-import 'package:dashboard_bloc_tdd/src/on_boarding/presentation/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
 void main() {
