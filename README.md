@@ -41,12 +41,29 @@ The project directory structure is described in the following way.
 |   |   |-- common
 |   |   |   |-- views
 |   |   |   |   |-- page_under_construction.dart
+|   |   |-- errors
+|   |   |   |-- exceptions.dart
+|   |   |   |-- failures.dart
 |   |   |-- res
 |   |   |   |-- colors.dart
 |   |   |   |-- fonts.dart
 |   |   |   |-- media_res.dart
 |   |   |-- services
 |   |   |   |-- router.dart
+|   |   |-- usecases
+|   |   |   |-- usecases.dart
+|   |   |-- utils
+|   |   |   |-- typedefs.dart
+|-- |-- src
+|   |   |-- on_boarding
+|   |   |   |-- domain
+|   |   |   |   |-- repos
+|   |   |   |   |   |-- on_boarding_repo.dart
+|   |   |   |   |-- usecases
+|   |   |   |   |   |-- cache_first_timer.dart
+|   |   |   |   |   |-- check_if_user_is_first_timer.dart
+|   |   |   |-- presentation
+|   |   |   |   |-- on_boarding_screen.dart
 |   |-- main.dart
 |-- test
 |-- web
@@ -56,17 +73,44 @@ The project directory structure is described in the following way.
 ## Clean Architecture
 The project is structured in the concept of three layers. Domain, Data and Presentation layer.
 
+### Errors
+`exceptions.dart`, the file contains custom exceptions that application can throw. And Exception in Dart is a type of error that represents a program failure that can be caught and handled within the application. Exceptions include additional information like a message and a status code, is useful for debugging and error handling.
+
+- `ServerException`: Represents an error that occurs during network communication with server.
+- `CacheException`: Represents an error related to local data storage, such as when reading from or writing to a local database or cache.
+
+### Failures
+`failures.dart`, the file defines Failure classes which are used to represent domain-level errors. They can be used to encapsulate details about cache or server-related issues, respectively.
+
+
+- `Failure` An abstract class that provides a base for specific types of failures.
+- `CacheFailure` Specific types of failure that inherit from Failure.
+- `ServerFailure` is a subclass of Failure, and it includes a named constructor called fromException.
+
+```
+try {
+  // Some code that might throw a ServerException
+} catch (e) {
+  if (e is ServerException) {
+    throw ServerFailure.fromException(e);
+  }
+}
+```
+
 ## Domain Layer
 We have here three sub directories:
  - entities
  - repositories
  - usecases
 
+
+
 ### Entities
 Represent the core data model of the application. They define the structure and properties of the data. Each entity class is a blueprint of the object that is passing around the application. Entety answers the question what kind of the data we are using in the application.
 
 ### Repositories
 Define the contract between the data layer and the domain layer. This is done in the form of the interface. In dart we don't have interfaces like in Java but here we mimic it with abstract class.
+`abstract` class is a class that can't be instantiated and often contains abstract methods. This are methods without implementation. We use abstract classes to define a common interface that other classe must implement.
 
 ### Usecases
 Represents the business logic of the application. They depend on the repository and call its methods to perform data operations. Usecases enforce SRP (Single responsibility principle) and focus on specific functionalities.
