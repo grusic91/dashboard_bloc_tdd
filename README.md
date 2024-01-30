@@ -37,7 +37,7 @@ The project directory structure is described in the following way.
 |-- assets
 |-- ios
 |-- lib
-|-- |-- core
+|   |-- core
 |   |   |-- common
 |   |   |   |-- views
 |   |   |   |   |-- page_under_construction.dart
@@ -54,7 +54,7 @@ The project directory structure is described in the following way.
 |   |   |   |-- usecases.dart
 |   |   |-- utils
 |   |   |   |-- typedefs.dart
-|-- |-- src
+|   |-- src
 |   |   |-- on_boarding
 |   |   |   |-- domain
 |   |   |   |   |-- repos
@@ -66,6 +66,13 @@ The project directory structure is described in the following way.
 |   |   |   |   |-- on_boarding_screen.dart
 |   |-- main.dart
 |-- test
+|   |-- src
+|   |   |-- on_boarding
+|   |   |   |-- domain
+|   |   |   |   |-- usecases
+|   |   |   |   |   |-- cache_first_timer_test.dart
+|   |   |   |   |   |-- check_if_user_is_first_timer_test.dart
+|   |   |   |   |   |-- on_boarding_repo.mock.dart
 |-- web
 |-- pubspec.yaml
 ```
