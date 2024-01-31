@@ -105,12 +105,12 @@ try {
 ```
 
 ## Domain Layer
+The domain layer in the context of Clean Architecture, is responsible for encapsulating the core business logic and rules of the application. This layer is highly reusable and testable.
+
 We have here three sub directories:
  - entities
  - repositories
  - usecases
-
-
 
 ### Entities
 Represent the core data model of the application. They define the structure and properties of the data. Each entity class is a blueprint of the object that is passing around the application. Entety answers the question what kind of the data we are using in the application.
@@ -121,6 +121,8 @@ Define the contract between the data layer and the domain layer. This is done in
 
 ### Usecases
 Represents the business logic of the application. They depend on the repository and call its methods to perform data operations. Usecases enforce SRP (Single responsibility principle) and focus on specific functionalities.
+
+### Testing
 
 ## Licences
 [![style: very good analysis](https://img.shields.io/badge/style-very_good_analysis-B22C89.svg)](https://pub.dev/packages/very_good_analysis)
