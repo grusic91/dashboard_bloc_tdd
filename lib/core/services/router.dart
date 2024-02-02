@@ -1,5 +1,5 @@
 import 'package:dashboard_bloc_tdd/core/common/views/page_under_construction.dart';
-import 'package:dashboard_bloc_tdd/src/on_boarding/presentation/on_boarding_screen.dart';
+import 'package:dashboard_bloc_tdd/src/on_boarding/presentation/views/on_boarding_screen.dart';
 import 'package:flutter/material.dart';
 
 Route<dynamic> generateRoute(RouteSettings settings) {
