@@ -6,12 +6,12 @@ abstract class AuthRepo {
   const AuthRepo();
 
   ResultFuture<LocalUser> signIn({
-    required String emai,
+    required String email,
     required String password,
   });
 
   ResultFuture<void> signUp({
-    required String emai,
+    required String email,
     required String fullName,
     required String password,
   });
