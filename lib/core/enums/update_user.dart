@@ -1,5 +1,5 @@
 enum UpdateUserAction {
-  eisplayName,
+  displayName,
   email,
   password,
   bio,
