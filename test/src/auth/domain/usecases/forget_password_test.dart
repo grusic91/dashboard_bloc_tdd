@@ -15,7 +15,7 @@ void main() {
     usecase = ForgotPassword(repo);
   });
 
-  group('Tests call the [AuthRepo.forgotPassword]', () {
+  group('tests call the [AuthRepo.forgotPassword]', () {
     test('should call the [AuthRepo.forgotPassword] - failure', () async {
       when(() => repo.forgotPassword('email')).thenAnswer(
         (_) async => Left(
