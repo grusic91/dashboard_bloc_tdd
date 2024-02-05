@@ -1,9 +1,12 @@
 import 'package:dashboard_bloc_tdd/core/res/colors.dart';
 import 'package:dashboard_bloc_tdd/core/res/fonts.dart';
+import 'package:dashboard_bloc_tdd/core/services/injection_container.dart';
 import 'package:dashboard_bloc_tdd/core/services/router.dart';
 import 'package:flutter/material.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await init();
   runApp(const MyApp());
 }
 
@@ -14,6 +17,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Dashboard TDD',
       theme: ThemeData(
         colorScheme: ColorScheme.fromSwatch(accentColor: Colours.primaryColour),
