@@ -8,7 +8,7 @@ class LocalUserModel extends LocalUser {
     required super.points,
     required super.fullName,
     super.groupIds,
-    super.enrolledCourses = const [],
+    super.enrolledCoursesIds = const [],
     super.following = const [],
     super.followers = const [],
     super.profilePic,
@@ -32,8 +32,8 @@ class LocalUserModel extends LocalUser {
           profilePic: map['profilePic'] as String?,
           bio: map['bio'] as String?,
           groupIds: (map['groupIds'] as List<dynamic>).cast<String>(),
-          enrolledCourses:
-              (map['enrolledCourses'] as List<dynamic>).cast<String>(),
+          enrolledCoursesIds:
+              (map['enrolledCoursesIds'] as List<dynamic>).cast<String>(),
           following: (map['following'] as List<dynamic>).cast<String>(),
           followers: (map['followers'] as List<dynamic>).cast<String>(),
         );
@@ -47,7 +47,7 @@ class LocalUserModel extends LocalUser {
       'points': points,
       'fullName': fullName,
       'groupIds': groupIds,
-      'enrolledCoursesIds': enrolledCourses,
+      'enrolledCoursesIds': enrolledCoursesIds,
       'following': following,
       'followers': followers,
     };
@@ -61,7 +61,7 @@ class LocalUserModel extends LocalUser {
     int? points,
     String? fullName,
     List<String>? groupIds,
-    List<String>? enrolledCourses,
+    List<String>? enrolledCoursesIds,
     List<String>? following,
     List<String>? followers,
   }) {
@@ -73,7 +73,7 @@ class LocalUserModel extends LocalUser {
       points: points ?? this.points,
       fullName: fullName ?? this.fullName,
       groupIds: groupIds ?? this.groupIds,
-      enrolledCourses: enrolledCourses ?? this.enrolledCourses,
+      enrolledCoursesIds: enrolledCoursesIds ?? this.enrolledCoursesIds,
       following: following ?? this.following,
       followers: followers ?? this.followers,
     );

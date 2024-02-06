@@ -7,7 +7,7 @@ class LocalUser extends Equatable {
     required this.points,
     required this.fullName,
     this.groupIds = const [],
-    this.enrolledCourses = const [],
+    this.enrolledCoursesIds = const [],
     this.following = const [],
     this.followers = const [],
     this.profilePic,
@@ -25,7 +25,7 @@ class LocalUser extends Equatable {
           groupIds: const [],
           followers: const [],
           following: const [],
-          enrolledCourses: const [],
+          enrolledCoursesIds: const [],
         );
 
   final String uid;
@@ -35,7 +35,7 @@ class LocalUser extends Equatable {
   final int points;
   final String fullName;
   final List<String> groupIds;
-  final List<String> enrolledCourses;
+  final List<String> enrolledCoursesIds;
   final List<String> following;
   final List<String> followers;
 
