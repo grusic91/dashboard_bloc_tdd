@@ -53,7 +53,7 @@ void main() {
         Left<CacheFailure, dynamic>(
           CacheFailure(
             message: 'Insufficient storage',
-            statusCode: 500,
+            statusCode: '500',
           ),
         ),
       );
@@ -93,7 +93,7 @@ void main() {
       when(() => localDataSoruce.checkIfUserIsFirstTimer()).thenThrow(
         const CacheException(
           message: 'Insufficient permission',
-          statusCode: 403,
+          statusCode: '403',
         ),
       );
 
@@ -105,7 +105,7 @@ void main() {
           Left<CacheFailure, bool>(
             CacheFailure(
               message: 'Insufficient permission',
-              statusCode: 403,
+              statusCode: '403',
             ),
           ),
         ),

@@ -49,7 +49,7 @@ void main() {
       ).thenThrow(
         const ServerException(
           message: 'User does not exist',
-          statusCode: 404,
+          statusCode: '404',
         ),
       );
 
@@ -61,7 +61,7 @@ void main() {
           Left<dynamic, void>(
             ServerFailure(
               message: 'User does not exist',
-              statusCode: 404,
+              statusCode: '404',
             ),
           ),
         ),
@@ -113,7 +113,7 @@ void main() {
       ).thenThrow(
         const ServerException(
           message: 'User does not exist',
-          statusCode: 404,
+          statusCode: '404',
         ),
       );
 
@@ -128,7 +128,7 @@ void main() {
           Left<dynamic, void>(
             ServerFailure(
               message: 'User does not exist',
-              statusCode: 404,
+              statusCode: '404',
             ),
           ),
         ),
@@ -182,7 +182,7 @@ void main() {
         ).thenThrow(
           const ServerException(
             message: 'User already exists',
-            statusCode: 400,
+            statusCode: '400',
           ),
         );
         final result = await repoImpl.signUp(
@@ -197,7 +197,7 @@ void main() {
             Left<dynamic, ServerFailure>(
               ServerFailure(
                 message: 'User already exists',
-                statusCode: 400,
+                statusCode: '400',
               ),
             ),
           ),
@@ -255,7 +255,7 @@ void main() {
         ).thenThrow(
           const ServerException(
             message: 'User does not exist',
-            statusCode: 404,
+            statusCode: '404',
           ),
         );
 
@@ -270,7 +270,7 @@ void main() {
             Left<dynamic, ServerFailure>(
               ServerFailure(
                 message: 'User does not exist',
-                statusCode: 404,
+                statusCode: '404',
               ),
             ),
           ),
