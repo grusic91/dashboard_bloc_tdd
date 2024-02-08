@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "187265218475",
+    "project_id": "dashboard-bloc-app",
+    "storage_bucket": "dashboard-bloc-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:187265218475:android:2734ba2d634a6c905484ee",
+        "android_client_info": {
+          "package_name": "com.example.dashboard_bloc_tdd"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBMViaPOjDZ9hGf_cda-2u-GYqyBDhA16E"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
