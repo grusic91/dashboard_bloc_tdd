@@ -15,7 +15,7 @@ import 'package:flutter/material.dart';
 abstract class AuthRemoteDataSource {
   const AuthRemoteDataSource();
 
-  Future<void> forgotPassword(String password);
+  Future<void> forgotPassword(String email);
 
   Future<LocalUserModel> signIn({
     required String email,
