@@ -168,4 +168,102 @@ void main() {
       },
     );
   });
+
+  group('ForgotPasswordEvent', () {
+    blocTest<AuthBloc, AuthState>(
+      'should emit [AuthLoading, ForgotPassword] '
+      'when ForgotPasswordEvent is added and ForgotPassword succeeds',
+      build: () {
+        when(
+          () => forgotPassword(any()),
+        ).thenAnswer((_) async => const Right(null));
+        return authBloc;
+      },
+      act: (bloc) => bloc.add(const ForgotPasswordEvent(email: 'email')),
+      expect: () => [
+        const AuthLoading(),
+        const ForgotPasswordSent(),
+      ],
+      verify: (_) {
+        verify(
+          () => forgotPassword('email'),
+        ).called(1);
+        verifyNoMoreInteractions(forgotPassword);
+      },
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      'should emit [AuthLoading, AuthError] '
+      'when ForgotPasswordEvent is added and ForgotPassword fails',
+      build: () {
+        when(
+          () => forgotPassword(any()),
+        ).thenAnswer((_) async => Left(tServerFailure));
+        return authBloc;
+      },
+      act: (bloc) => bloc.add(const ForgotPasswordEvent(email: 'email')),
+      expect: () => [
+        const AuthLoading(),
+        AuthError(tServerFailure.errorMessage),
+      ],
+      verify: (_) {
+        verify(
+          () => forgotPassword('email'),
+        ).called(1);
+        verifyNoMoreInteractions(forgotPassword);
+      },
+    );
+  });
+
+  group('UpdateUserEvent', () {
+    blocTest<AuthBloc, AuthState>(
+      'should emit [AuthLoading, UserUpdated] '
+      'when UpdateUserEvent added and UdateUser scucceeds',
+      build: () {
+        when(() => updateUser(any()))
+            .thenAnswer((_) async => const Right(null));
+        return authBloc;
+      },
+      act: (bloc) => bloc.add(
+        UpdateUserEvent(
+          action: tUpdateUserParams.action,
+          userData: tUpdateUserParams.userData,
+        ),
+      ),
+      expect: () => [
+        const AuthLoading(),
+        const UserUpdated(),
+      ],
+      verify: (_) {
+        verify(
+          () => updateUser(tUpdateUserParams),
+        ).called(1);
+        verifyNoMoreInteractions(updateUser);
+      },
+    );
+
+    blocTest<AuthBloc, AuthState>(
+      'should emit [AuthLoading, AuthError] '
+      'when UpdateUserEvent added and UdateUser fails',
+      build: () {
+        when(() => updateUser(any()))
+            .thenAnswer((_) async => Left(tServerFailure));
+        return authBloc;
+      },
+      act: (bloc) => bloc.add(
+        UpdateUserEvent(
+          action: tUpdateUserParams.action,
+          userData: tUpdateUserParams.userData,
+        ),
+      ),
+      expect: () => [
+        const AuthLoading(),
+        AuthError(tServerFailure.errorMessage),
+      ],
+      verify: (_) {
+        verify(() => updateUser(tUpdateUserParams)).called(1);
+        verifyNoMoreInteractions(updateUser);
+      },
+    );
+  });
 }
