@@ -1,7 +1,10 @@
+import 'package:dashboard_bloc_tdd/core/extensions/context_extension.dart';
 import 'package:flutter/material.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
+
+  static const routeName = '/sign-up';
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -10,6 +13,13 @@ class SignUpScreen extends StatefulWidget {
 class _SignUpScreenState extends State<SignUpScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Placeholder(
+      child: Center(
+        child: Text(
+          'SIGN UP SCREEN',
+          style: context.theme.textTheme.bodyLarge,
+        ),
+      ),
+    );
   }
 }
