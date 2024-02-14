@@ -57,6 +57,12 @@ Route<dynamic> generateRoute(RouteSettings settings) {
         settings: settings,
       );
 
+    case '/forgot-password':
+      return _pageBuilder(
+        (_) => const uiauth.ForgotPasswordScreen(),
+        settings: settings,
+      );
+
     default:
       return _pageBuilder(
         (_) => const PageUnderConstruction(),
