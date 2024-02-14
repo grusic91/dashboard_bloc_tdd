@@ -41,7 +41,7 @@ class IField extends StatelessWidget {
               return validator?.call(value);
             },
       onTapOutside: (_) {
-        Focus.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
       },
       keyboardType: keyboardType,
       obscureText: obscureText,
