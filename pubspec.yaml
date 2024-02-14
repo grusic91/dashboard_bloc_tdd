@@ -13,10 +13,10 @@ dependencies:
   dartz: ^0.10.1
   equatable: ^2.0.5
   file_picker: ^6.1.1
-  firebase_auth: ^4.17.4
+  firebase_auth: 4.13.0
   firebase_core: ^2.25.4
   firebase_storage: ^11.6.5
-  firebase_ui_auth: ^1.7.0
+  firebase_ui_auth: 1.6.0
   flutter:
     sdk: flutter
 
