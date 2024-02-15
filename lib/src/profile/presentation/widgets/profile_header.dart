@@ -1,4 +1,6 @@
 import 'package:dashboard_bloc_tdd/core/common/app/providers/user_provider.dart';
+import 'package:dashboard_bloc_tdd/core/extensions/context_extension.dart';
+import 'package:dashboard_bloc_tdd/core/res/colors.dart';
 import 'package:dashboard_bloc_tdd/core/res/media_res.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -32,7 +34,28 @@ class ProfileHeader extends StatelessWidget {
                 fontWeight: FontWeight.w600,
                 fontSize: 24,
               ),
-            )
+            ),
+            if (user?.bio != null && user!.bio!.isNotEmpty) ...[
+              const SizedBox(
+                height: 8,
+              ),
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: context.width * .15,
+                ),
+                child: Text(
+                  user.bio!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 12,
+                    color: Colours.neutralTextColour,
+                  ),
+                ),
+              ),
+            ],
+            const SizedBox(
+              height: 16,
+            ),
           ],
         );
       },
