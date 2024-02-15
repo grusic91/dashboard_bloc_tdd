@@ -105,7 +105,7 @@ try {
 ```
 
 ## Domain Layer
-The domain layer in the context of Clean Architecture, is responsible for encapsulating the core business logic and rules of the application. This layer is highly reusable and testable.
+The domain layer in the context of Clean Architecture, is responsible for encapsulating the core business logic and rules of the application. This layer is highly reusable and testable. It contains only definitions. Domain layer does not depend on any framework it is pure. It only depends on the language which can be any language that is picked.
 
 We have here three sub directories:
  - entities
@@ -115,12 +115,19 @@ We have here three sub directories:
 ### Entities
 Represent the core data model of the application. They define the structure and properties of the data. Each entity class is a blueprint of the object that is passing around the application. Entety answers the question what kind of the data we are using in the application.
 
+
 ### Repositories
 Define the contract between the data layer and the domain layer. This is done in the form of the interface. In dart we don't have interfaces like in Java but here we mimic it with abstract class.
 `abstract` class is a class that can't be instantiated and often contains abstract methods. This are methods without implementation. We use abstract classes to define a common interface that other classe must implement.
 
 ### Usecases
 Represents the business logic of the application. They depend on the repository and call its methods to perform data operations. Usecases enforce SRP (Single responsibility principle) and focus on specific functionalities.
+
+## Data Layer
+Explains how data in the app are handled. Extends the functionality of domain layer.
+
+# Presentation Layer
+Handle UI when we talking to the server. There we use bloc or other state managment solution.
 
 ### Testing
 
