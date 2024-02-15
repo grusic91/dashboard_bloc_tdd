@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 
 import 'package:bloc/bloc.dart';
@@ -47,7 +48,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: event.password,
       ),
     );
-
     result.fold(
       (failure) => emit(AuthError(failure.errorMessage)),
       (user) => emit(SignedIn(user)),
@@ -65,10 +65,9 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
         password: event.password,
       ),
     );
-
     result.fold(
       (failure) => emit(AuthError(failure.errorMessage)),
-      (user) => emit(const SignedUp()),
+      (_) => emit(const SignedUp()),
     );
   }
 
@@ -79,7 +78,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final result = await _forgotPassword(event.email);
     result.fold(
       (failure) => emit(AuthError(failure.errorMessage)),
-      (success) => emit(const ForgotPasswordSent()),
+      (_) => emit(const ForgotPasswordSent()),
     );
   }
 

@@ -122,11 +122,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           // get fresh user setup with reloading
                           FirebaseAuth.instance.currentUser?.reload();
                           if (formKey.currentState!.validate()) {
-                            SignUpEvent(
-                              email: emailController.text.trim(),
-                              password: passwordController.text.trim(),
-                              name: fullNameController.text.trim(),
-                            );
+                            context.read<AuthBloc>().add(
+                                  SignUpEvent(
+                                    email: emailController.text.trim(),
+                                    password: passwordController.text.trim(),
+                                    name: fullNameController.text.trim(),
+                                  ),
+                                );
                           }
                         },
                       ),
