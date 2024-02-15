@@ -4,7 +4,7 @@ import 'package:dashboard_bloc_tdd/core/res/fonts.dart';
 import 'package:dashboard_bloc_tdd/core/services/injection_container.dart';
 import 'package:dashboard_bloc_tdd/core/services/router.dart';
 import 'package:dashboard_bloc_tdd/firebase_options.dart';
-import 'package:dashboard_bloc_tdd/src/dashboard/providers/dashboard_controller.dart';
+import 'package:dashboard_bloc_tdd/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_ui_auth/firebase_ui_auth.dart';
 import 'package:flutter/material.dart';

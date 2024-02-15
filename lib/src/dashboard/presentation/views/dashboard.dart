@@ -1,7 +1,7 @@
 import 'package:dashboard_bloc_tdd/core/common/app/providers/user_provider.dart';
 import 'package:dashboard_bloc_tdd/core/res/colors.dart';
 import 'package:dashboard_bloc_tdd/src/auth/data/models/user_model.dart';
-import 'package:dashboard_bloc_tdd/src/dashboard/providers/dashboard_controller.dart';
+import 'package:dashboard_bloc_tdd/src/dashboard/presentation/providers/dashboard_controller.dart';
 import 'package:dashboard_bloc_tdd/src/dashboard/utils/dashboard_utils.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
