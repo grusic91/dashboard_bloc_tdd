@@ -64,9 +64,7 @@ class ProfileBody extends StatelessWidget {
                     infoThemeColour: Colours.chemistryTileColour,
                     infoIcon: const Icon(
                       IconlyLight.user,
-                      color: Color(
-                        0xFFFF85AA,
-                      ),
+                      color: Color(0xFFFF85AA),
                       size: 24,
                     ),
                     infoTitle: 'Following',
