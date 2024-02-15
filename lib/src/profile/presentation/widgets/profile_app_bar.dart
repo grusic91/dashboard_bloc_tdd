@@ -3,8 +3,12 @@ import 'dart:async';
 import 'package:dashboard_bloc_tdd/core/common/widgets/popup_item.dart';
 import 'package:dashboard_bloc_tdd/core/extensions/context_extension.dart';
 import 'package:dashboard_bloc_tdd/core/res/colors.dart';
+import 'package:dashboard_bloc_tdd/core/services/injection_container.dart';
+import 'package:dashboard_bloc_tdd/src/auth/presentation/bloc/auth_bloc.dart';
+import 'package:dashboard_bloc_tdd/src/profile/presentation/views/edit_profile_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iconly/iconly.dart';
 
 class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
@@ -40,7 +44,12 @@ class ProfileAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
                 title: 'Edit Profile',
               ),
-              onTap: () => context.push(const Placeholder()),
+              onTap: () => context.push(
+                BlocProvider(
+                  create: (_) => sl<AuthBloc>(),
+                  child: const EditProfileView(),
+                ),
+              ),
             ),
             PopupMenuItem<void>(
               child: const PopupItem(
