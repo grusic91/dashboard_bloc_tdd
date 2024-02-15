@@ -39,7 +39,7 @@ class UserInfoCard extends StatelessWidget {
               ),
             ),
             const SizedBox(
-              height: 10,
+              width: 10,
             ),
             Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
