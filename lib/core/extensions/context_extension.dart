@@ -1,3 +1,4 @@
+import 'package:dashboard_bloc_tdd/core/common/app/providers/tab_navigator.dart';
 import 'package:dashboard_bloc_tdd/core/common/app/providers/user_provider.dart';
 import 'package:dashboard_bloc_tdd/src/auth/domain/entities/user.dart';
 import 'package:flutter/material.dart';
@@ -22,4 +23,9 @@ extension ContextExt on BuildContext {
   UserProvider get userProvider => read<UserProvider>();
 
   LocalUser? get currentUser => userProvider.user;
+
+  TabNaviagator get tabNavigator => read<TabNaviagator>();
+
+  void pop() => tabNavigator.pop();
+  void push(Widget page) => tabNavigator.push(TabItem(child: page));
 }
