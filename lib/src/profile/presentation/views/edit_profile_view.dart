@@ -1,6 +1,9 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:dashboard_bloc_tdd/core/common/widgets/gradient_background.dart';
+import 'package:dashboard_bloc_tdd/core/common/widgets/nested_back_button.dart';
+import 'package:dashboard_bloc_tdd/core/enums/update_user.dart';
 import 'package:dashboard_bloc_tdd/core/extensions/context_extension.dart';
 import 'package:dashboard_bloc_tdd/core/res/media_res.dart';
 import 'package:dashboard_bloc_tdd/core/utils/core_utils.dart';
@@ -83,9 +86,172 @@ class _EditProfileViewState extends State<EditProfileView> {
       },
       builder: (context, state) {
         return Scaffold(
+          extendBodyBehindAppBar: true,
+          appBar: AppBar(
+            centerTitle: false,
+            leading: const NestedBackButton(),
+            title: const Text(
+              'Edit Profile',
+              style: TextStyle(
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
+              ),
+            ),
+            actions: [
+              TextButton(
+                onPressed: () {
+                  if (nothingChanged) context.pop();
+                  final bloc = context.read<AuthBloc>();
+
+                  if (passwordChanged) {
+                    if (oldPasswordController.text.isEmpty) {
+                      CoreUitls.showSnackBar(
+                        context,
+                        'Please enter your old password',
+                      );
+                      return;
+                    }
+                    bloc.add(
+                      UpdateUserEvent(
+                        action: UpdateUserAction.password,
+                        userData: jsonEncode(
+                          {
+                            'oldPassword': oldPasswordController.text.trim(),
+                            'newPassword': passwordController.text.trim(),
+                          },
+                        ),
+                      ),
+                    );
+                  }
+                  if (nameChanged) {
+                    bloc.add(
+                      UpdateUserEvent(
+                        action: UpdateUserAction.displayName,
+                        userData: fullNameController.text.trim(),
+                      ),
+                    );
+                  }
+
+                  if (emailChanged) {
+                    bloc.add(
+                      UpdateUserEvent(
+                        action: UpdateUserAction.email,
+                        userData: emailController.text.trim(),
+                      ),
+                    );
+                  }
+
+                  if (bioChanged) {
+                    bloc.add(
+                      UpdateUserEvent(
+                        action: UpdateUserAction.bio,
+                        userData: bioController.text.trim(),
+                      ),
+                    );
+                  }
+                  if (imageChanged) {
+                    bloc.add(
+                      UpdateUserEvent(
+                        action: UpdateUserAction.profilePic,
+                        userData: pickedImage,
+                      ),
+                    );
+                  }
+                },
+                child: state is AuthLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(),
+                      )
+                    : StatefulBuilder(
+                        builder: (context, refresh) {
+                          fullNameController.addListener(() => refresh(() {}));
+                          emailController.addListener(() => refresh(() {}));
+                          passwordController.addListener(() => refresh(() {}));
+                          bioController.addListener(() => refresh(() {}));
+                          return Text(
+                            'Done',
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                              color: nothingChanged
+                                  ? Colors.grey
+                                  : Colors.blueAccent,
+                            ),
+                          );
+                        },
+                      ),
+              ),
+            ],
+          ),
           body: GradientBackground(
             image: MediaRes.profileGradientBackground,
-            child: ListView(),
+            child: ListView(
+              padding: const EdgeInsets.symmetric(horizontal: 20),
+              children: [
+                Builder(
+                  builder: (context) {
+                    final user = context.currentUser!;
+                    final userImage =
+                        user.profilePic == null || user.profilePic!.isEmpty
+                            ? null
+                            : user.profilePic;
+
+                    return Container(
+                      height: 100,
+                      width: 100,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: pickedImage != null
+                              ? FileImage(pickedImage!)
+                              : userImage != null
+                                  ? NetworkImage(userImage)
+                                  : const AssetImage(MediaRes.user)
+                                      as ImageProvider,
+                          fit: BoxFit.contain,
+                        ),
+                      ),
+                      child: Stack(
+                        alignment: AlignmentDirectional.center,
+                        children: [
+                          Container(
+                            height: 100,
+                            width: 100,
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.black.withOpacity(.5),
+                            ),
+                          ),
+                          IconButton(
+                            onPressed: pickImage,
+                            icon: Icon(
+                              (pickedImage != null || user.profilePic != null)
+                                  ? Icons.edit
+                                  : Icons.add_a_photo,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
+                ),
+                const SizedBox(height: 10),
+                const Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 20),
+                  child: Text(
+                    'We recommend an image of at least 400x400',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      color: Color(0xFF777E90),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 30),
+              ],
+            ),
           ),
         );
       },
