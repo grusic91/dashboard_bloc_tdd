@@ -6,7 +6,6 @@ class NestedBackButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // ignore: deprecated_member_use
     return PopScope(
       onPopInvoked: (_) async {
         try {
