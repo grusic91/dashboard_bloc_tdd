@@ -4,6 +4,7 @@
 /// and are expected as part of normal application flow.
 library;
 
+import 'package:dashboard_bloc_tdd/core/errors/exceptions.dart';
 import 'package:equatable/equatable.dart';
 
 abstract class Failure extends Equatable {
@@ -41,11 +42,11 @@ class ServerFailure extends Failure {
 
   //.fromException is a named constructor for the ServerFailure class.
   // it can be renamed later of I find better name
-  // It takes a ServerFailure object as an argument, which
-  // is the source of the data for the new ServerFailure instance being created.
+  // It takes a ServerException object as an argument, which
+  // is the source of the data for the new ServerException instance.
   // This constructor is useful when catching a ServerException
   // and want to convert it to a ServerFailure
-  ServerFailure.fromException(ServerFailure exception)
+  ServerFailure.fromException(ServerException exception)
       : this(
           message: exception.message,
           statusCode: exception.statusCode,
