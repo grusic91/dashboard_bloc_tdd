@@ -8,6 +8,7 @@ import 'package:dashboard_bloc_tdd/core/extensions/context_extension.dart';
 import 'package:dashboard_bloc_tdd/core/res/media_res.dart';
 import 'package:dashboard_bloc_tdd/core/utils/core_utils.dart';
 import 'package:dashboard_bloc_tdd/src/auth/presentation/bloc/auth_bloc.dart';
+import 'package:dashboard_bloc_tdd/src/profile/presentation/widgets/edit_profile_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
@@ -250,6 +251,13 @@ class _EditProfileViewState extends State<EditProfileView> {
                   ),
                 ),
                 const SizedBox(height: 30),
+                EditProfileForm(
+                  fullNameController: fullNameController,
+                  emailController: emailController,
+                  passwordController: passwordController,
+                  bioController: bioController,
+                  oldPasswordController: oldPasswordController,
+                ),
               ],
             ),
           ),
