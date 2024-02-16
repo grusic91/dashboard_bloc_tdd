@@ -50,7 +50,8 @@ class CourseRemoteDataSrcImpl implements CourseRemotDataSrc {
 
       if (courseModel.imageIsFile) {
         final imageRef = _storage.ref().child(
-            'courses/${courseModel.id}/profile_image/${courseModel.title}--pfp');
+              'courses/${courseModel.id}/profile_image/${courseModel.title}--pfp',
+            );
         await imageRef.putFile(File(courseModel.image!)).then((value) async {
           final url = await value.ref.getDownloadURL();
           courseModel = courseModel.copyWith(image: url);
@@ -81,8 +82,30 @@ class CourseRemoteDataSrcImpl implements CourseRemotDataSrc {
   }
 
   @override
-  Future<List<CourseModel>> getCourses() {
-    // TODO: implement getCourses
-    throw UnimplementedError();
+  Future<List<CourseModel>> getCourses() async {
+    try {
+      final user = _auth.currentUser;
+
+      if (user == null) {
+        throw const ServerException(
+          message: 'User is not authenticated',
+          statusCode: '401',
+        );
+      }
+      return _firestore.collection('courses').get().then(
+            (value) => value.docs
+                .map((doc) => CourseModel.fromMap(doc.data()))
+                .toList(),
+          );
+    } on FirebaseException catch (e) {
+      throw ServerException(
+        message: e.message ?? 'Unknown error occured',
+        statusCode: e.code,
+      );
+    } on ServerException {
+      rethrow;
+    } catch (e) {
+      throw ServerException(message: e.toString(), statusCode: '500');
+    }
   }
 }
