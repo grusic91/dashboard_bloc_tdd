@@ -11,9 +11,7 @@ class NestedBackButton extends StatelessWidget {
       onPopInvoked: (_) async {
         try {
           context.pop();
-        } catch (_) {
-          Navigator.of(context).pop();
-        }
+        } catch (_) {}
       },
       child: IconButton(
         onPressed: () {
